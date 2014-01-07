@@ -1,0 +1,30 @@
+ [
+	{ 
+		"id":1,
+		"url":"resources/media/BigBuck.webm",
+		"posterUrl":"resources/images/cover.jpg",
+		"label":"Bunny 1"
+		
+	},
+	{ 
+		"id":2,
+		"url":"resources/media/BigBuck.mp4",
+		"posterUrl":"resources/images/cover.jpg",
+		"label":"Bunny 2"
+		
+	},
+	{ 
+		"id":3,
+		"url":"resources/media/BigBuck2.m4v",
+		"posterUrl":"resources/images/cover.jpg",
+		"label":"Bunny 3"
+		
+	},
+	{ 
+		"id":4,
+		"url":"resources/media/BigBuck.webm",
+		"posterUrl":"resources/images/cover.jpg",
+		"label":"Bunny 4"
+		
+	} 
+]

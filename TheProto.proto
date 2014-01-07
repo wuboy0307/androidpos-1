@@ -1,0 +1,70 @@
+package com.pointbridge.swc3.protocol;
+// How to generate
+// ===============
+ 
+// $ protoc -I=/home/michael/Work/SmartHome/theclient/android --java_out=/home/michael/Work/SmartHome/theclient/android/src /home/michael/Work/SmartHome/theclient/android/TheProto.proto
+//
+// Add @SuppressWarnings("all") to the generated code not to pollute IDE task list.
+option optimize_for = LITE_RUNTIME;
+option java_package = "com.pointbridge.swc3.protocol";
+option java_outer_classname = "TheProtocol";
+
+
+// app=application name
+
+message TheProto {
+
+
+	required string nd_packid =1;// package id (unique every send), package id,md5 or hash number, for unique identification of later update status from server or other client
+	
+	required string nd_app=2; // Application Name
+    required string nd_id=3; // Unique ID for each client application, node ID used to make sure data is delivered to correct client
+	required string nd_name =4; // Display name of the node, could be nick name when chatting
+	required string nd_cmd =5;// The command 
+	required string nd_ori=6;// original sender, very useful when you need to get status of your message, client <---> server <--->client
+	optional string nd_dest=7;// destination node 
+	optional bytes nd_cnt=9;//  content of packet
+	optional int32 nd_type=10;
+	message nd_query{
+		optional string q_id=1;
+
+		optional int32 q_type=2;//0=chat,1=db,2=relay
+		optional string q_name=3;
+		optional int32 q_status=4;
+		optional string q_groupid=5;
+	 
+		optional string q_cnt=6;
+		
+	}
+	repeated nd_query nd_query_list=11;
+	/*
+	message nd_dbquery {
+		 optional string db_id=1;
+	  	 optional int32 db_status=2; //status -> New(0),Accepted by server(1),Delivered to Target(2), Delivered but privelege block(3),
+	  	 optional string db_name = 3; //-tablename
+	  	 optional string db_query = 4;
+	  	 optional string db_group = 5; //make group to make easy of client separation
+	}
+	repeated nd_dbquery nd_query_list=10;
+	message nd_chat{
+		optional string msg_id=1;
+		optional int32 msg_type=2; //type -> Private Message(0), Group Message(1), BroadCast(2)
+	  	optional int32	msg_status=3; //status -> New(0), Accepted(1), Delivered(2), Await(3),Failed (9)
+	  	optional string msg_groupid=4; //in case the chat is for group, check by nd_cmd
+	  	optional string msg_cnt = 5;
+	}  
+	repeated nd_chat nd_chat_list=11;
+	message nd_relay {
+ 
+		 optional string db_id=1;
+	  	 optional int32  db_status=2; //status -> New(0),Accepted by server(1),Delivered to Target(2), Delivered but privelege block(3),
+	  	 optional string db_name = 3; //-tablename
+	  	 optional string db_query = 4;
+	  	 optional string db_group = 5; //make group to make easy of client separation
+  	}
+  	repeated nd_relay nd_relay_list=12; 
+  	*/
+}
+message TheProtoList {
+  repeated TheProto theProto = 1;
+}

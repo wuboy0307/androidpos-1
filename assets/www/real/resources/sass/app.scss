@@ -1,0 +1,136 @@
+// The following two lines import the default Sencha Touch theme. If you are building
+// a new theme, remove them and the add your own CSS on top of the base CSS (which
+// is already included in your app.json file).
+
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+// Custom code goes here..
+//@include icon-font('IcoMoon', inline-font-files('icomoon.woff', woff, 'icomoon.ttf', truetype,'icomoon.svg', svg));
+//@include icon-font('fontello', inline-font-files('fontello.woff', woff, 'fontello.ttf', truetype,'fontello.svg', svg));
+//@include icon('multibox', '\e85a', 'fontello');
+//@include icon('singlebox', '\e8b3', 'fontello');
+//@include icon('camera2','\e804','fontello');
+//@include icon('light','\e848','fontello');
+//@include icon('home3','\e86a','fontello');
+//@include icon('weather','\e84d','fontello');
+//@include icon('alarm','\e84c','fontello');
+//@include icon('multimedia','\e850','fontello');
+
+@include icon-font('IcoMoon', inline-font-files('icomoon.woff', woff, 'icomoon.ttf', truetype,'icomoon.svg', svg));
+@include icon('multibox', '\e001', 'IcoMoon');
+@include icon('singlebox', '\e003', 'IcoMoon');
+@include icon('camera2','\e072','IcoMoon');
+@include icon('light','\e085','IcoMoon');
+@include icon('home3','\e041','IcoMoon');
+@include icon('weather','\e054','IcoMoon');
+@include icon('alarm','\e07d','IcoMoon');
+@include icon('multimedia','\e078','IcoMoon');
+@include icon('tv','\x022','IcoMoon');
+@include icon('onoff','\e042','IcoMoon');
+@include icon('mute','\e039','IcoMoon');
+@include icon('volup','\e037','IcoMoon');
+@include icon('voldown','\e038','IcoMoon');
+@include icon('play','\e00e','IcoMoon');
+@include icon('stop','\e010','IcoMoon');
+@include icon('pause','\e00f','IcoMoon');
+@include icon('next','\e00a','IcoMoon');
+@include icon('prev','\e009','IcoMoon');
+@include icon('up2','\e007','IcoMoon');
+@include icon('down2','\e032','IcoMoon');
+@include icon('left2','\e030','IcoMoon');
+@include icon('right2','\e034','IcoMoon');
+@include icon('enter2','\f090','IcoMoon');
+@include icon('back2','\e02f','IcoMoon');
+@include icon('projector','\e088','IcoMoon');
+ 
+
+@import 'icons';
+ 
+ 
+ 
+code, pre, pre * {
+  font-family: Menlo, Monaco, Courier, monospace;
+}
+
+.x-desktop code, .x-desktop pre {
+  font-size: .95em;
+}
+.x-content{
+margin-left: auto; margin-right: auto;
+background-color:#fff
+}
+.ks-basic .x-dataview {
+    background: #eee;
+
+    .x-dataview-item {
+        padding: 1em;
+        text-align: center;
+        color: #000;
+
+        img {
+            margin: 1em;
+        }
+
+        &:nth-child(odd) {
+            color: white;
+            background: black;
+        }
+        &:nth-child(even) {
+            color: black;
+            background: white;
+        }
+    }
+}
+
+// Buttons
+
+.buttons {
+  background-color: #ccc;
+}
+.x-inbox {
+    .x-list-item  {
+        font-weight: bold;
+        line-height: 14px;
+		font-size:0.8em;
+        span {
+            display: block;
+            font-size: 0.7em;
+            font-weight: normal;
+            
+        }
+    }
+
+    .thumb {
+        float: left;
+        height: 32px;
+        width: 32px;
+        margin-right: 10px;
+        background-size: cover;
+        background-position: center center;
+        background: #ddd;
+        @include border-radius(3px);
+        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.6);
+    }
+
+    .x-item-pressed,
+    .x-item-selected {
+       border-top-colorx: #D1D1D1 !important;
+    }
+}
+.x-customlist {
+	background-color:#fff;
+    .x-list-item  {
+       
+        span {
+            display: block;
+            font-size: 0.8em;
+            font-weight: normal;
+            
+        }
+    }
+ 
+    .x-item-pressed,
+    .x-item-selected {
+       border-top-colorx: #000000 !important;
+    }
+}
