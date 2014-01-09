@@ -15,7 +15,11 @@ Ext.define('AppUI.controller.Invoice', {
              	onViewInvoice : 'onViewInvoice'
              },
              addInvoice:{
-             	showlist:'showlist'
+             	showlist:'showlist',
+             	onBackInvoice:'onBackInvoice',
+             	onNextInvoice:'onNextInvoice',
+             	onSaveInvoice:'onSaveInvoice',
+             	onCancelInvoice : 'onCancelInvoice'
              }
         }
     },
@@ -26,6 +30,25 @@ Ext.define('AppUI.controller.Invoice', {
     index:function(){
         console.log("its index");
     }, 
+    onSaveInvoice:function(){
+    	 
+    },
+    onCancelInvoice:function(){
+    	this.showlist();
+    },
+    onBackInvoice:function(){
+    	
+    	var idx=this.getAddInvoice().items.indexOf(this.getAddInvoice().getActiveItem());
+    	console.log(idx); 
+    	idx=idx-1;
+    	this.getAddInvoice().setActiveItem(idx);
+    },
+    onNextInvoice:function(){
+    	var idx=this.getAddInvoice().items.indexOf(this.getAddInvoice().getActiveItem());
+    		console.log( idx); 
+    		idx=idx+1;
+    	this.getAddInvoice().setActiveItem(idx);
+    },
     onInitInvoiceList:function(){
 		console.log("on init invoicelist");
 		astore=Ext.getStore('SalesMasters');
@@ -40,34 +63,21 @@ Ext.define('AppUI.controller.Invoice', {
     	console.log("oAddInvoice on Invoice controller");
     	var mainControl=AppUI.app.getController('Main');
     	mainControl.getMainTitle().setTitle('Add Invoice');
-    		mainControl.showView("AddInvoice");
-    		this.getAddInvoice().down('formpanel').down('toolbar').down('button[text=Save]').setHidden(false);
-    	this.getAddInvoice().down('formpanel').down('toolbar').down('button[text=Cancel]').setHidden(false);
-    	this.getAddInvoice().down('formpanel').down('toolbar').down('button[text=Back]').setHidden(true);
-    	var allitems=this.getAddInvoice().down('formpanel').getInnerItems();
-    	for (i=0;i<allitems.length;i++){
-   		 
-   		 	if (allitems[i].isXType('fieldset')){
-   		 		var subitems=allitems[i].getInnerItems();
-   		 		for (z=0;z<subitems.length;z++){
-   		 			if (subitems[z].isXType('textfield')){
-   		 				subitems[z].setReadOnly(false);
-   		 			}
-   		 		}
-   		 	}
-    	}
+        mainControl.showView("invoice.AddInvoice");
+        this.getAddInvoice().setActiveItem(0);
+    	console.log("after show view of add invoice");	 
     },
     onEditInvoice:function(){
     	console.log("onEditInvoice on Invoice controller");
     	var mainControl=AppUI.app.getController('Main');
     	mainControl.getMainTitle().setTitle('Edit Invoice');
-    		mainControl.showView("AddInvoice");
+    		mainControl.showView("invoice.AddInvoice");
     },
     onViewInvoice:function(){
     	var mainControl=AppUI.app.getController('Main');
     	 
     	mainControl.getMainTitle().setTitle('View Invoice');
-    		mainControl.showView("AddInvoice");
+    		mainControl.showView("invoice.AddInvoice");
     	console.log("onViewInvoice on Invoice controller");
     	
     	this.getAddInvoice().down('formpanel').down('toolbar').down('button[text=Save]').setHidden(true);
@@ -90,7 +100,7 @@ Ext.define('AppUI.controller.Invoice', {
     showlist:function(){
     	var mainControl=AppUI.app.getController('Main');
     	mainControl.getMainTitle().setTitle('Invoice List');
-    		mainControl.showView("InvoiceList");
+    		mainControl.showView("invoice.InvoiceList");
     }
 
     

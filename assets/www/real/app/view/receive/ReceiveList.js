@@ -1,20 +1,24 @@
-Ext.define('AppUI.view.StockList', {
+Ext.define('AppUI.view.receive.ReceiveList', {
 	extend: 'Ext.List',
-    xtype: 'stocklist',
+    xtype: 'receivelist',
     requires: [
          'Ext.data.Store',
         'Ext.List',
         'Ext.field.Search',
         'Ext.Toolbar',
-        'Ext.Panel'
+        'Ext.Panel',
+        'AppUI.view.receive.AddReceive',
+         'AppUI.view.receive.ReceiveMasterView',
+         'AppUI.view.receive.ReceiveItemList',
+         'AppUI.view.receive.ReceiveSerialList'
          
     ],
      
     config: {
-       store: 'Items',
+       store: 'MoveMasters',
        ui:'round',
        cls: 'x-customlist',
-         title: 'Stock List',
+         title: 'Receive List',
         plugins: [
         {
             xclass: 'Ext.plugin.ListPaging',
@@ -35,11 +39,11 @@ Ext.define('AppUI.view.StockList', {
             type: 'fit' 
            
         },
-         emptyText: '<div style="margin-top: 20px; text-align: center">No Matching Items</div>',
+         emptyText: '<div style="margin-top: 20px; text-align: center">No Matching Data</div>',
          itemTpl: [
 	           
-	            '{shortname}({itm_code})',
-	            '<span>Stock : {itm_qty} {itm_unit}</span>' 
+	            '{so_no}({so_date})',
+	            '<span>{cust_name} ({cust_code})</span>' 
 	            
 	        ].join(''),
         items: [{
@@ -56,16 +60,23 @@ Ext.define('AppUI.view.StockList', {
                              
                                 scope: this,
                                 clearicontap: function (me){
-                                	me.up('stocklist').onSearchClearIconTap();
+                                	me.up('receivelist').onSearchClearIconTap();
                                 },
                                 keyup:function(me,event){
                                 	 
-                                	me.up('stocklist').onSearchKeyUp(me);
+                                	me.up('receivelist').onSearchKeyUp(me);
                                 }
                            
                             } 
                         },
-                        { xtype: 'spacer' } 
+                        { xtype: 'spacer' },
+                        { text:'Add',ui:'masked',
+		                        handler: function(me) {
+		                         console.log("onAddReturn");
+		                       	me.up('returnlist').fireEvent('onAddReturn');
+		                    }
+		                    
+                        }
                     ]
                 }],
          listeners: {

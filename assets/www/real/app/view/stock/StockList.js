@@ -1,20 +1,22 @@
-Ext.define('AppUI.view.InvoiceList', {
+Ext.define('AppUI.view.stock.StockList', {
 	extend: 'Ext.List',
-    xtype: 'invoicelist',
+    xtype: 'stocklist',
     requires: [
          'Ext.data.Store',
         'Ext.List',
         'Ext.field.Search',
         'Ext.Toolbar',
-        'Ext.Panel'
-         
+        'Ext.Panel',
+         'AppUI.view.stock.AddItem',
+         'AppUI.view.stock.ItemView',
+          'AppUI.view.stock.SerialList'
     ],
      
     config: {
-       store: 'SalesMasters',
+       store: 'Items',
        ui:'round',
        cls: 'x-customlist',
-         title: 'Invoice List',
+         title: 'Stock List',
         plugins: [
         {
             xclass: 'Ext.plugin.ListPaging',
@@ -35,24 +37,13 @@ Ext.define('AppUI.view.InvoiceList', {
             type: 'fit' 
            
         },
-         emptyText: '<div style="margin-top: 20px; text-align: center">No Matching Data</div>',
-        itemTpl: new Ext.XTemplate(
-          '{sm_no} ({sm_date:date("d/m/Y")}) <span>{cust_name} ({cust_code}), Total : {[this.totalFormat(values.sm_total)]}</span>',{
-	           		 totalFormat : function(nStr) {
-						     nStr += '';
-							x = nStr.split('.');
-							x1 = x[0];
-							x2 = x.length > 1 ? '.' + x[1] : '';
-							var rgx = /(\d+)(\d{3})/;
-							while (rgx.test(x1)) {
-							    x1 = x1.replace(rgx, '$1' + ',' + '$2');
-							}
-							return x1 + x2;
-				          //return sm_total.toFixed(4) ;
-				      }}
-        ),
-        
-         
+         emptyText: '<div style="margin-top: 20px; text-align: center">No Matching Items</div>',
+         itemTpl: [
+	           
+	            '{itm_shortname}({itm_code})',
+	            '<span>Stock : {itm_qty} {itm_unit}</span>' 
+	            
+	        ].join(''),
         items: [{
                     xtype: 'toolbar',
                     docked: 'top',
@@ -67,11 +58,11 @@ Ext.define('AppUI.view.InvoiceList', {
                              
                                 scope: this,
                                 clearicontap: function (me){
-                                	me.up('invoicelist').onSearchClearIconTap();
+                                	me.up('stocklist').onSearchClearIconTap();
                                 },
                                 keyup:function(me,event){
                                 	 
-                                	me.up('invoicelist').onSearchKeyUp(me);
+                                	me.up('stocklist').onSearchKeyUp(me);
                                 }
                            
                             } 
@@ -81,21 +72,28 @@ Ext.define('AppUI.view.InvoiceList', {
                 }],
          listeners: {
          		initialize: function(me,opt){
-         			console.log('init invoice list')
          			me.fireEvent('onInit',me,opt);
          		},
                 itemtap: function(me, list, index, item) {
                     var me=this;
-                    me.fireEvent('itemLeafTap', me, list, index,item);
-                    console.log('itemLeafTap');
+                    me.fireEvent('onViewItem', me, list, index,item);
+                    console.log('itemLeafTap on StockList');
                 }
             	}
     		} ,
     			 
-            	  
+            	 /**
+			     * Called when the search field has a keyup event.
+			     *
+			     * This will filter the store based on the fields content.
+			     */
             	 onSearchKeyUp: function(field) { 
 				    },
- 
+
+			    /**
+			     * Called when the user taps on the clear icon in the search field.
+			     * It simply removes the filter form the store
+			     */
 			    onSearchClearIconTap: function() {
 			       this.getStore().clearFilter();
 			    }

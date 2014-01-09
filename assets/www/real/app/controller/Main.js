@@ -234,41 +234,41 @@ Ext.define('AppUI.controller.Main', {
     	 */
     	if (record.get("id")=='customer') {
     		this.getMainTitle().setTitle(record.get("text"));
-    		this.showView("CustomerList");
+    		this.showView("customer.CustomerList");
     	}
     	else 
     	 
     	 
     	if (record.get("id")==='stock') {
     		this.getMainTitle().setTitle(record.get("text"));
-    		 this.showView("StockList");
+    		 this.showView("stock.StockList");
     		
     	}else 
     	if (record.get("id")==='invoice') {
     		this.getMainTitle().setTitle(record.get("text"));
-    		 this.showView("InvoiceList");
+    		 this.showView("invoice.InvoiceList");
     		
     	}else 
     	if (record.get("id")==='order') {
     		this.getMainTitle().setTitle(record.get("text"));
-    		 this.showView("OrderList");
+    		 this.showView("order.OrderList");
     		
     	}else 
     	if (record.get("id")==='return') {
     		this.getMainTitle().setTitle(record.get("text"));
-    		 this.showView("ReturnList");
+    		 this.showView("return.ReturnList");
     		
     	}
     	else 
     	if (record.get("id")==='receive') {
     		this.getMainTitle().setTitle(record.get("text"));
-    		 this.showView("ReceiveList");
+    		 this.showView("receive.ReceiveList");
     		
     	}
     	else 
     	if (record.get("id")==='transfer') {
     		this.getMainTitle().setTitle(record.get("text"));
-    		 this.showView("TransferList");
+    		 this.showView("transfer.TransferList");
     		
     	}
     	else {

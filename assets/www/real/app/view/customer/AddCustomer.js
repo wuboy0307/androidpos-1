@@ -1,4 +1,4 @@
-Ext.define('AppUI.view.AddCustomer', {
+Ext.define('AppUI.view.customer.AddCustomer', {
 	/*
     extend: 'Ext.Container',
     xtype:'addcustomer',

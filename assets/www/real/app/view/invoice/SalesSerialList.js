@@ -1,6 +1,6 @@
-Ext.define('AppUI.view.CustomerList', {
+Ext.define('AppUI.view.invoice.SalesSerialList', {
 	extend: 'Ext.List',
-    xtype: 'customerlist',
+    xtype: 'salesseriallist',
     requires: [
          'Ext.data.Store',
         'Ext.List',
@@ -11,10 +11,10 @@ Ext.define('AppUI.view.CustomerList', {
     ],
      
     config: {
-       store: 'Customers',
+       store: 'SalesSerials',
        ui:'round',
        cls: 'x-customlist',
-       title: 'Customer',
+       title: 'Sales Serial',
         plugins: [
         {
             xclass: 'Ext.plugin.ListPaging',
@@ -35,7 +35,7 @@ Ext.define('AppUI.view.CustomerList', {
             type: 'fit' 
            
         },
-         emptyText: '<div  ">No Matching Items</div>',
+         emptyText: '<div  ">No Matching Serials</div>',
          itemTpl: [
 	           
 	            '{cust_name2}',
@@ -46,30 +46,14 @@ Ext.define('AppUI.view.CustomerList', {
                     xtype: 'toolbar',
                     docked: 'top',
 					  ui:'light',
+					  title:'Serial Numbers',
                     items: [
                         { xtype: 'spacer' },
-                        {
-                            xtype: 'searchfield',
-                           
-                            placeHolder: 'Search...',
-                            listeners: {
-                             
-                                scope: this,
-                                clearicontap: function (me){
-                                	me.up('customerlist').onSearchClearIconTap();
-                                },
-                                keyup:function(me,event){
-                                	 
-                                	me.up('customerlist').onSearchKeyUp(me);
-                                }
-                           
-                            } 
-                        },
-                        { xtype: 'spacer' },
+                        
                        	 { text:'Add',ui:'masked',
 		                        handler: function(me) {
-		                        	console.log("addcustomer");
-		                       	me.up('customerlist').onAddCustomer();
+		                        	console.log("addsalesitem");
+		                       	me.up('salesitemlist').onAddSalesSerial();
 		                    }
 		                    
                         }
@@ -81,14 +65,14 @@ Ext.define('AppUI.view.CustomerList', {
          		},
                 itemtap: function(me, list, index, item) {
                     var me=this;
-                    me.fireEvent('onViewCustomer', me, list, index,item);
-                    console.log('customerLeafTap');
+                    me.fireEvent('onViewSalesSerial', me, list, index,item);
+                    console.log('salesitemLeafTap');
                 } 
             	}
     		} ,
-    			onAddCustomer:function(){
-    				console.log("onAddCustomer");
-    				this.fireEvent("onAddCustomer");
+    			onAddSalesSerial:function(){
+    				console.log("onAddSalesSerial");
+    				this.fireEvent("onAddSalesSerial");
     			},
             	 /**
 			     * Called when the search field has a keyup event.

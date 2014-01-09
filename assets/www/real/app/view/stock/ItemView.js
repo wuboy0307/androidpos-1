@@ -1,7 +1,7 @@
-Ext.define('AppUI.view.ItemView', {
+Ext.define('AppUI.view.stock.ItemView', {
     extend: 'Ext.TabPanel',
     xtype: 'itemview',
-    require : [''],
+    require : ['AppUI.view.stock.AddItem','AppUI.view.stock.SerialList'],
     config: {
         title:'Items',
         iconCls:'light',
@@ -26,8 +26,22 @@ Ext.define('AppUI.view.ItemView', {
        	 	xtype:'additem'
        	 },
        	 {
-       	 	xtype:'itemserial'
-       	 }
+       	 	xtype:'seriallist'
+       	 }, {
+		            	xtype: 'toolbar',
+							    docked: 'bottom',
+							    layout: { pack: 'left' },
+							    items: [
+							         
+							        {
+							            xtype: 'button',
+							            text: 'Back',
+							            handler: function(me) {
+							                me.up('itemview').fireEvent("showlist");
+							            }
+							        } 
+							    ]
+		            }
             
         ],
         listeners : {

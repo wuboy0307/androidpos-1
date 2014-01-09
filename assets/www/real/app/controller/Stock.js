@@ -1,10 +1,11 @@
 Ext.define('AppUI.controller.Stock', {
     extend: 'Ext.app.Controller',
-    
+    requires:[ ],
     config: {
        refs: {
-    	  addStock :'addstock' ,
-    	  stockList :'stocklist' 
+    	  addItem :'additem' ,
+    	  stockList :'stocklist',
+    	  itemView:'itemview'
         },
        
         control: {
@@ -12,9 +13,12 @@ Ext.define('AppUI.controller.Stock', {
              	onInit: 'onInitStockList',
              	onAddStock : 'onAddStock',
              	onEditStock : 'onEditStock',
-             	onViewStock : 'onViewStock'
+             	onViewItem : 'onViewItem'
              },
-             addStock:{
+             addItem:{
+             	showlist:'showlist'
+             },
+             itemView:{
              	showlist:'showlist'
              }
         }
@@ -28,7 +32,7 @@ Ext.define('AppUI.controller.Stock', {
     }, 
     onInitStockList:function(){
 		console.log("on init stocklist");
-		astore=Ext.getStore('SalesMasters');
+		astore=Ext.getStore('Items');
 	 
 	    /*  {name: 'itm_id',          type: 'string'},
 	            {name: 'itm_code',        type: 'string'},
@@ -41,50 +45,32 @@ Ext.define('AppUI.controller.Stock', {
 	            {name: 'itm_type',        type: 'int'},
 	            {name: 'itm_csg',        type: 'int'},
 	            */
-		astore.add({sm_no: 'Sb020201.23201.1010',cust_code:'ABC',cust_name:'TOKO ABC',sm_date:'2014-01-01',sm_total:'1000000'}, 
-			{sm_no: 'Sb020201.23201.1011',cust_code:'ABC',cust_name:'TOKO ABC',sm_date:'2014-01-01',sm_total:'2000000'});
+		astore.add({itm_id:'123',itm_code: '0120301',itm_name:'NOKIA 123',itm_shortname:'NOKIA 123',itm_unit:'PCS',itm_qty:'10',itm_status:'1',itm_type:'1'}, 
+			{itm_id:'124',itm_code: '01202221',itm_name:'NOKIA AAAA',itm_shortname:'NOKIA AAA',itm_unit:'PCS',itm_qty:'20',itm_status:'1',itm_type:'1'});
 		astore.sync();
 		astore.load();
 	},
-    onAddStock:function(){
+    onAddItem:function(){
     	console.log("oAddStock on Stock controller");
-    	var mainControl=AppUI.app.getController('Main');
-    	mainControl.getMainTitle().setTitle('Add Stock');
-    		mainControl.showView("AddStock");
-    		this.getAddStock().down('formpanel').down('toolbar').down('button[text=Save]').setHidden(false);
-    	this.getAddStock().down('formpanel').down('toolbar').down('button[text=Cancel]').setHidden(false);
-    	this.getAddStock().down('formpanel').down('toolbar').down('button[text=Back]').setHidden(true);
-    	var allitems=this.getAddStock().down('formpanel').getInnerItems();
-    	for (i=0;i<allitems.length;i++){
-   		 
-   		 	if (allitems[i].isXType('fieldset')){
-   		 		var subitems=allitems[i].getInnerItems();
-   		 		for (z=0;z<subitems.length;z++){
-   		 			if (subitems[z].isXType('textfield')){
-   		 				subitems[z].setReadOnly(false);
-   		 			}
-   		 		}
-   		 	}
-    	}
+    	 
     },
-    onEditStock:function(){
+    onEditItem:function(){
     	console.log("onEditStock on Stock controller");
     	var mainControl=AppUI.app.getController('Main');
     	mainControl.getMainTitle().setTitle('Edit Stock');
-    		mainControl.showView("AddStock");
+    		mainControl.showView("stock.AddStock");
     },
-    onViewStock:function(){
+    onViewItem:function(){
     	var mainControl=AppUI.app.getController('Main');
     	 
-    	mainControl.getMainTitle().setTitle('View Stock');
-    		mainControl.showView("AddStock");
-    	console.log("onViewStock on Stock controller");
+    	mainControl.getMainTitle().setTitle('View Item');
+    		mainControl.showView("stock.ItemView");
+    	console.log("onViewItem on Stock controller");
     	
-    	this.getAddStock().down('formpanel').down('toolbar').down('button[text=Save]').setHidden(true);
-    	this.getAddStock().down('formpanel').down('toolbar').down('button[text=Cancel]').setHidden(true);
-    	this.getAddStock().down('formpanel').down('toolbar').down('button[text=Back]').setHidden(false);
     	 
-    	var allitems=this.getAddStock().down('formpanel').getInnerItems();
+    	 
+    	 
+    	var allitems=this.getAddItem().down('formpanel').getInnerItems();
     	for (i=0;i<allitems.length;i++){
    		 
    		 	if (allitems[i].isXType('fieldset')){
@@ -100,7 +86,7 @@ Ext.define('AppUI.controller.Stock', {
     showlist:function(){
     	var mainControl=AppUI.app.getController('Main');
     	mainControl.getMainTitle().setTitle('Stock List');
-    		mainControl.showView("StockList");
+    		mainControl.showView("stock.StockList");
     }
 
     

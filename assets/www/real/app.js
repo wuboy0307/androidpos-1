@@ -53,10 +53,12 @@ Ext.application({
         
         
     //],
-    controllers : ['Main','Customer','Invoice','Stock'],
+    controllers : ['Main','Customer','Invoice','Stock','Order','Return'],
     models: ['Customer','Item'],
-    stores : ['Menus','Inboxs','Configs','Customers','Items','SalesMasters','SalesDetails'],
-    views : ['Main','MainPanel','MenuPanel','InboxPanel','SetupView','HomeView','AddItem','SerialList'],//,'AddCustomer','CustomerList','StockList' ],
+    stores : ['Menus','Inboxs','Configs','Customers','Items','SalesMasters','SalesDetails','SalesSerials',
+    'SoMasters','SoDetails','SrMasters','SrDetails','SrSerials'],
+    views : ['Main','MainPanel','MenuPanel','InboxPanel','SetupView','HomeView'],//,'AddCustomer','CustomerList','StockList' ],
+    //,'AddInvoice','SerialList','SalesMasterView','SalesItemList',  'SalesSerialList'
     glossOnIcon: true,
     
     icon: {

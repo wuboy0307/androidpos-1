@@ -1,4 +1,4 @@
-Ext.define('AppUI.view.AddItem', {
+Ext.define('AppUI.view.stock.AddItem', {
 	 
 	   extend: 'Ext.Container',
     xtype: 'additem',
@@ -70,23 +70,9 @@ Ext.define('AppUI.view.AddItem', {
                             
                              
                         ]
-                    },
+                    } 
                     
-                     {
-		            	xtype: 'toolbar',
-							    docked: 'bottom',
-							    layout: { pack: 'center' },
-							    items: [
-							         
-							        {
-							            xtype: 'button',
-							            text: 'Back',
-							            handler: function(me) {
-							                me.up('additem').fireEvent("showlist");
-							            }
-							        } 
-							    ]
-		            }
+                    
                 ]
             }
         ],

@@ -29,6 +29,7 @@ config: {
 	             {name: 'itm_status',type:'int'},
 	            {name: 'itm_type',        type: 'int'},
 	            {name: 'itm_csg',        type: 'int'},
+	             {name: 'itm_serial',        type: 'int'},//means it has serial or no
 	               {
                 name: 'itm_type2',
                 convert: function(value, record) {

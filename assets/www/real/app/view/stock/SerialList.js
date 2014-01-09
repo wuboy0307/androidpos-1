@@ -1,6 +1,6 @@
-Ext.define('AppUI.view.OrderList', {
+Ext.define('AppUI.view.stock.SerialList', {
 	extend: 'Ext.List',
-    xtype: 'orderlist',
+    xtype: 'seriallist',
     requires: [
          'Ext.data.Store',
         'Ext.List',
@@ -11,10 +11,10 @@ Ext.define('AppUI.view.OrderList', {
     ],
      
     config: {
-       store: 'Items',
+       store: 'ItemSerials',
        ui:'round',
        cls: 'x-customlist',
-         title: 'Order List',
+         title: 'Serial List',
         plugins: [
         {
             xclass: 'Ext.plugin.ListPaging',
@@ -35,11 +35,11 @@ Ext.define('AppUI.view.OrderList', {
             type: 'fit' 
            
         },
-         emptyText: '<div style="margin-top: 20px; text-align: center">No Matching Data</div>',
+         emptyText: '<div style="margin-top: 20px; text-align: center">No Matching Items</div>',
          itemTpl: [
 	           
-	            '{so_no}({so_date})',
-	            '<span>{cust_name} ({cust_code})</span>' 
+	            '{shortname}({itm_code})',
+	            '<span>Serial : {itm_qty} {itm_unit}</span>' 
 	            
 	        ].join(''),
         items: [{
@@ -56,11 +56,11 @@ Ext.define('AppUI.view.OrderList', {
                              
                                 scope: this,
                                 clearicontap: function (me){
-                                	me.up('orderlist').onSearchClearIconTap();
+                                	me.up('seriallist').onSearchClearIconTap();
                                 },
                                 keyup:function(me,event){
                                 	 
-                                	me.up('orderlist').onSearchKeyUp(me);
+                                	me.up('seriallist').onSearchKeyUp(me);
                                 }
                            
                             } 

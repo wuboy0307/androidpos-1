@@ -2,8 +2,7 @@ Ext.define('AppUI.view.MainPanel', {
   extend: 'Ext.Container',
     xtype: 'mainpanel',
    requires: [
-        'AppUI.view.CustomerList',
-        'AppUI.view.AddCustomer' 
+        
     ],
 
 	

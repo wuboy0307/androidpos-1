@@ -1,6 +1,6 @@
-Ext.define('AppUI.view.ReturnList', {
+Ext.define('AppUI.view.transfer.TransferList', {
 	extend: 'Ext.List',
-    xtype: 'returnlist',
+    xtype: 'transferlist',
     requires: [
          'Ext.data.Store',
         'Ext.List',
@@ -14,7 +14,7 @@ Ext.define('AppUI.view.ReturnList', {
        store: 'Items',
        ui:'round',
        cls: 'x-customlist',
-         title: 'Return List',
+         title: 'Transfer List',
         plugins: [
         {
             xclass: 'Ext.plugin.ListPaging',
@@ -56,11 +56,11 @@ Ext.define('AppUI.view.ReturnList', {
                              
                                 scope: this,
                                 clearicontap: function (me){
-                                	me.up('returnlist').onSearchClearIconTap();
+                                	me.up('transferlist').onSearchClearIconTap();
                                 },
                                 keyup:function(me,event){
                                 	 
-                                	me.up('returnlist').onSearchKeyUp(me);
+                                	me.up('transferlist').onSearchKeyUp(me);
                                 }
                            
                             } 

@@ -1,12 +1,16 @@
-Ext.define('AppUI.view.ReceiveList', {
+Ext.define('AppUI.view.return.ReturnList', {
 	extend: 'Ext.List',
-    xtype: 'receivelist',
+    xtype: 'returnlist',
     requires: [
          'Ext.data.Store',
         'Ext.List',
         'Ext.field.Search',
         'Ext.Toolbar',
-        'Ext.Panel'
+        'Ext.Panel',
+         'AppUI.view.return.AddReturn',
+         'AppUI.view.return.ReturnMasterView',
+         'AppUI.view.return.ReturnItemList',
+         'AppUI.view.return.ReturnSerialList'
          
     ],
      
@@ -14,7 +18,7 @@ Ext.define('AppUI.view.ReceiveList', {
        store: 'Items',
        ui:'round',
        cls: 'x-customlist',
-         title: 'Receive List',
+         title: 'Return List',
         plugins: [
         {
             xclass: 'Ext.plugin.ListPaging',
@@ -56,16 +60,23 @@ Ext.define('AppUI.view.ReceiveList', {
                              
                                 scope: this,
                                 clearicontap: function (me){
-                                	me.up('receivelist').onSearchClearIconTap();
+                                	me.up('returnlist').onSearchClearIconTap();
                                 },
                                 keyup:function(me,event){
                                 	 
-                                	me.up('receivelist').onSearchKeyUp(me);
+                                	me.up('returnlist').onSearchKeyUp(me);
                                 }
                            
                             } 
                         },
-                        { xtype: 'spacer' } 
+                        { xtype: 'spacer' },
+                         { text:'Add',ui:'masked',
+		                        handler: function(me) {
+		                         console.log("onAddReturn");
+		                       	me.up('returnlist').fireEvent('onAddReturn');
+		                    }
+		                    
+                        }
                     ]
                 }],
          listeners: {

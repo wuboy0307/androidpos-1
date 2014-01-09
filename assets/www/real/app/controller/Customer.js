@@ -38,7 +38,7 @@ Ext.define('AppUI.controller.Customer', {
     	console.log("oAddCustomer on Customer controller");
     	var mainControl=AppUI.app.getController('Main');
     	mainControl.getMainTitle().setTitle('Add Customer');
-    		mainControl.showView("AddCustomer");
+    		mainControl.showView("customer.AddCustomer");
     		this.getAddCustomer().down('formpanel').down('toolbar').down('button[text=Save]').setHidden(false);
     	this.getAddCustomer().down('formpanel').down('toolbar').down('button[text=Cancel]').setHidden(false);
     	this.getAddCustomer().down('formpanel').down('toolbar').down('button[text=Back]').setHidden(true);
@@ -59,13 +59,13 @@ Ext.define('AppUI.controller.Customer', {
     	console.log("onEditCustomer on Customer controller");
     	var mainControl=AppUI.app.getController('Main');
     	mainControl.getMainTitle().setTitle('Edit Customer');
-    		mainControl.showView("AddCustomer");
+    		mainControl.showView("customer.AddCustomer");
     },
     onViewCustomer:function(){
     	var mainControl=AppUI.app.getController('Main');
     	 
     	mainControl.getMainTitle().setTitle('View Customer');
-    		mainControl.showView("AddCustomer");
+    		mainControl.showView("customer.AddCustomer");
     	console.log("onViewCustomer on Customer controller");
     	
     	this.getAddCustomer().down('formpanel').down('toolbar').down('button[text=Save]').setHidden(true);
@@ -88,7 +88,7 @@ Ext.define('AppUI.controller.Customer', {
     showlist:function(){
     	var mainControl=AppUI.app.getController('Main');
     	mainControl.getMainTitle().setTitle('Customer List');
-    		mainControl.showView("CustomerList");
+    		mainControl.showView("customer.CustomerList");
     }
 
     
