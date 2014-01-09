@@ -33,14 +33,15 @@ public class MoveMasterDao extends AbstractDao<MoveMaster, String> {
         public final static Property Mm_totbuyprice = new Property(7, Float.class, "mm_totbuyprice", false, "MM_TOTBUYPRICE");
         public final static Property Mm_totsellprice = new Property(8, Float.class, "mm_totsellprice", false, "MM_TOTSELLPRICE");
         public final static Property Mv_code = new Property(9, String.class, "mv_code", false, "MV_CODE");
-        public final static Property Astate = new Property(10, Integer.class, "astate", false, "ASTATE");
-        public final static Property Src_code = new Property(11, String.class, "src_code", false, "SRC_CODE");
-        public final static Property Allproc = new Property(12, Integer.class, "allproc", false, "ALLPROC");
-        public final static Property Locked = new Property(13, Integer.class, "locked", false, "LOCKED");
-        public final static Property Posted = new Property(14, Integer.class, "posted", false, "POSTED");
-        public final static Property Mark = new Property(15, Integer.class, "mark", false, "MARK");
-        public final static Property Modi_by = new Property(16, String.class, "modi_by", false, "MODI_BY");
-        public final static Property Modi_date = new Property(17, java.util.Date.class, "modi_date", false, "MODI_DATE");
+        public final static Property Tm_no = new Property(10, String.class, "tm_no", false, "TM_NO");
+        public final static Property Astate = new Property(11, Integer.class, "astate", false, "ASTATE");
+        public final static Property Src_code = new Property(12, String.class, "src_code", false, "SRC_CODE");
+        public final static Property Allproc = new Property(13, Integer.class, "allproc", false, "ALLPROC");
+        public final static Property Locked = new Property(14, Integer.class, "locked", false, "LOCKED");
+        public final static Property Posted = new Property(15, Integer.class, "posted", false, "POSTED");
+        public final static Property Mark = new Property(16, Integer.class, "mark", false, "MARK");
+        public final static Property Modi_by = new Property(17, String.class, "modi_by", false, "MODI_BY");
+        public final static Property Modi_date = new Property(18, java.util.Date.class, "modi_date", false, "MODI_DATE");
     };
 
     private DaoSession daoSession;
@@ -69,14 +70,15 @@ public class MoveMasterDao extends AbstractDao<MoveMaster, String> {
                 "'MM_TOTBUYPRICE' REAL," + // 7: mm_totbuyprice
                 "'MM_TOTSELLPRICE' REAL," + // 8: mm_totsellprice
                 "'MV_CODE' TEXT," + // 9: mv_code
-                "'ASTATE' INTEGER," + // 10: astate
-                "'SRC_CODE' TEXT," + // 11: src_code
-                "'ALLPROC' INTEGER," + // 12: allproc
-                "'LOCKED' INTEGER," + // 13: locked
-                "'POSTED' INTEGER," + // 14: posted
-                "'MARK' INTEGER," + // 15: mark
-                "'MODI_BY' TEXT," + // 16: modi_by
-                "'MODI_DATE' INTEGER);"); // 17: modi_date
+                "'TM_NO' TEXT," + // 10: tm_no
+                "'ASTATE' INTEGER," + // 11: astate
+                "'SRC_CODE' TEXT," + // 12: src_code
+                "'ALLPROC' INTEGER," + // 13: allproc
+                "'LOCKED' INTEGER," + // 14: locked
+                "'POSTED' INTEGER," + // 15: posted
+                "'MARK' INTEGER," + // 16: mark
+                "'MODI_BY' TEXT," + // 17: modi_by
+                "'MODI_DATE' INTEGER);"); // 18: modi_date
         // Add Indexes
         db.execSQL("CREATE INDEX " + constraint + "IDX_MOVE_MASTER_MM_NO ON MOVE_MASTER" +
                 " (MM_NO);");
@@ -143,44 +145,49 @@ public class MoveMasterDao extends AbstractDao<MoveMaster, String> {
             stmt.bindString(10, mv_code);
         }
  
+        String tm_no = entity.getTm_no();
+        if (tm_no != null) {
+            stmt.bindString(11, tm_no);
+        }
+ 
         Integer astate = entity.getAstate();
         if (astate != null) {
-            stmt.bindLong(11, astate);
+            stmt.bindLong(12, astate);
         }
  
         String src_code = entity.getSrc_code();
         if (src_code != null) {
-            stmt.bindString(12, src_code);
+            stmt.bindString(13, src_code);
         }
  
         Integer allproc = entity.getAllproc();
         if (allproc != null) {
-            stmt.bindLong(13, allproc);
+            stmt.bindLong(14, allproc);
         }
  
         Integer locked = entity.getLocked();
         if (locked != null) {
-            stmt.bindLong(14, locked);
+            stmt.bindLong(15, locked);
         }
  
         Integer posted = entity.getPosted();
         if (posted != null) {
-            stmt.bindLong(15, posted);
+            stmt.bindLong(16, posted);
         }
  
         Integer mark = entity.getMark();
         if (mark != null) {
-            stmt.bindLong(16, mark);
+            stmt.bindLong(17, mark);
         }
  
         String modi_by = entity.getModi_by();
         if (modi_by != null) {
-            stmt.bindString(17, modi_by);
+            stmt.bindString(18, modi_by);
         }
  
         java.util.Date modi_date = entity.getModi_date();
         if (modi_date != null) {
-            stmt.bindLong(18, modi_date.getTime());
+            stmt.bindLong(19, modi_date.getTime());
         }
     }
 
@@ -210,14 +217,15 @@ public class MoveMasterDao extends AbstractDao<MoveMaster, String> {
             cursor.isNull(offset + 7) ? null : cursor.getFloat(offset + 7), // mm_totbuyprice
             cursor.isNull(offset + 8) ? null : cursor.getFloat(offset + 8), // mm_totsellprice
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // mv_code
-            cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // astate
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // src_code
-            cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12), // allproc
-            cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13), // locked
-            cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14), // posted
-            cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15), // mark
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // modi_by
-            cursor.isNull(offset + 17) ? null : new java.util.Date(cursor.getLong(offset + 17)) // modi_date
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // tm_no
+            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // astate
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // src_code
+            cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13), // allproc
+            cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14), // locked
+            cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15), // posted
+            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16), // mark
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // modi_by
+            cursor.isNull(offset + 18) ? null : new java.util.Date(cursor.getLong(offset + 18)) // modi_date
         );
         return entity;
     }
@@ -235,14 +243,15 @@ public class MoveMasterDao extends AbstractDao<MoveMaster, String> {
         entity.setMm_totbuyprice(cursor.isNull(offset + 7) ? null : cursor.getFloat(offset + 7));
         entity.setMm_totsellprice(cursor.isNull(offset + 8) ? null : cursor.getFloat(offset + 8));
         entity.setMv_code(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setAstate(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
-        entity.setSrc_code(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setAllproc(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
-        entity.setLocked(cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13));
-        entity.setPosted(cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14));
-        entity.setMark(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
-        entity.setModi_by(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setModi_date(cursor.isNull(offset + 17) ? null : new java.util.Date(cursor.getLong(offset + 17)));
+        entity.setTm_no(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setAstate(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
+        entity.setSrc_code(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setAllproc(cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13));
+        entity.setLocked(cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14));
+        entity.setPosted(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
+        entity.setMark(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
+        entity.setModi_by(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setModi_date(cursor.isNull(offset + 18) ? null : new java.util.Date(cursor.getLong(offset + 18)));
      }
     
     /** @inheritdoc */

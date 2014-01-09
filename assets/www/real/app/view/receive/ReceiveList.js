@@ -72,8 +72,8 @@ Ext.define('AppUI.view.receive.ReceiveList', {
                         { xtype: 'spacer' },
                         { text:'Add',ui:'masked',
 		                        handler: function(me) {
-		                         console.log("onAddReturn");
-		                       	me.up('returnlist').fireEvent('onAddReturn');
+		                         console.log("onAddReceive");
+		                       	me.up('receivelist').fireEvent('onAddReceive');
 		                    }
 		                    
                         }

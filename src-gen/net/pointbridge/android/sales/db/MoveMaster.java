@@ -20,6 +20,7 @@ public class MoveMaster {
     private Float mm_totbuyprice;
     private Float mm_totsellprice;
     private String mv_code;
+    private String tm_no;
     private Integer astate;
     private String src_code;
     private Integer allproc;
@@ -45,7 +46,7 @@ public class MoveMaster {
         this.mm_id = mm_id;
     }
 
-    public MoveMaster(String mm_id, String mm_no, java.util.Date mm_date, String mm_wh_code, String src_brc_code, String src_vend_code, Float mm_totqty, Float mm_totbuyprice, Float mm_totsellprice, String mv_code, Integer astate, String src_code, Integer allproc, Integer locked, Integer posted, Integer mark, String modi_by, java.util.Date modi_date) {
+    public MoveMaster(String mm_id, String mm_no, java.util.Date mm_date, String mm_wh_code, String src_brc_code, String src_vend_code, Float mm_totqty, Float mm_totbuyprice, Float mm_totsellprice, String mv_code, String tm_no, Integer astate, String src_code, Integer allproc, Integer locked, Integer posted, Integer mark, String modi_by, java.util.Date modi_date) {
         this.mm_id = mm_id;
         this.mm_no = mm_no;
         this.mm_date = mm_date;
@@ -56,6 +57,7 @@ public class MoveMaster {
         this.mm_totbuyprice = mm_totbuyprice;
         this.mm_totsellprice = mm_totsellprice;
         this.mv_code = mv_code;
+        this.tm_no = tm_no;
         this.astate = astate;
         this.src_code = src_code;
         this.allproc = allproc;
@@ -150,6 +152,14 @@ public class MoveMaster {
 
     public void setMv_code(String mv_code) {
         this.mv_code = mv_code;
+    }
+
+    public String getTm_no() {
+        return tm_no;
+    }
+
+    public void setTm_no(String tm_no) {
+        this.tm_no = tm_no;
     }
 
     public Integer getAstate() {

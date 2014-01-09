@@ -6,7 +6,11 @@ Ext.define('AppUI.view.transfer.TransferList', {
         'Ext.List',
         'Ext.field.Search',
         'Ext.Toolbar',
-        'Ext.Panel'
+        'Ext.Panel',
+        'AppUI.view.transfer.AddTransfer',
+         'AppUI.view.transfer.TransferMasterView',
+         'AppUI.view.transfer.TransferItemList',
+         'AppUI.view.transfer.TransferSerialList'
          
     ],
      
@@ -65,7 +69,14 @@ Ext.define('AppUI.view.transfer.TransferList', {
                            
                             } 
                         },
-                        { xtype: 'spacer' } 
+                        { xtype: 'spacer' } ,
+                        { text:'Add',ui:'masked',
+		                        handler: function(me) {
+		                         console.log("onAddTransfer");
+		                       	me.up('transferlist').fireEvent('onAddTransfer');
+		                    }
+		                    
+                        }
                     ]
                 }],
          listeners: {

@@ -53,7 +53,7 @@ Ext.application({
         
         
     //],
-    controllers : ['Main','Customer','Invoice','Stock','Order','Return'],
+    controllers : ['Main','Customer','Invoice','Stock','Order','Return','Receive','Transfer'],
     models: ['Customer','Item'],
     stores : ['Menus','Inboxs','Configs','Customers','Items','SalesMasters','SalesDetails','SalesSerials',
     'SoMasters','SoDetails','SrMasters','SrDetails','SrSerials'],
